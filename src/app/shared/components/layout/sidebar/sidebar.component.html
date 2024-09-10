@@ -1,0 +1,41 @@
+<div class="sidebar" [ngClass]="getSidebarCollapsed()">
+    <div class="menu-btn" (click)="toggleCollapsed()">
+
+        @if(!collapsed){
+        <i class="fa-solid fa-angle-right"></i>
+        } @else{
+        <i class="fa-solid fa-angle-left"></i>
+        }
+    </div>
+
+    <div class="logo-container">
+        <div class="head">
+            <div class="logo">
+                <img src="" alt="">
+            </div>
+
+            @if(collapsed){
+            <div class="user-details">
+                <p class="title">Sistema Academia</p>
+                <p class="name">Adriano G</p>
+            </div>
+            }
+
+
+        </div>
+    </div>
+
+    <ul class="sidebar-nav">
+        @for(item of navData; track item.index){
+        <li class="sidebar-nav-item">
+            <a class="sidebar-nav-link" [routerLink]="[item.path]" [ngClass]="getActiveClass(item)">
+                <i class="sidebar-link-icon" [class]="item.icon"></i>
+                @if(collapsed){
+                    <span class="sidebar-link-text">{{item.label}}</span>
+                }
+            </a>
+        </li>
+        }
+    </ul>
+
+</div>
